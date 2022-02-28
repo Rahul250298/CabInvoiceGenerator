@@ -8,6 +8,7 @@ namespace CabInvoiceGenerator
 {
     public class InvoiceGenerator
     {
+        Dictionary<string, InvoiceSummary> invoiceService = new Dictionary<string, InvoiceSummary>();
         public RideType rideType;
         // readonly Variables
         public readonly double MINIMUM_COST_PER_KM;
@@ -70,6 +71,12 @@ namespace CabInvoiceGenerator
             double result = MultipleRide(rides);
             return new InvoiceSummary(rides.Length, result);
         }
+        //Method to Get Invoice For a user
+        public User InvoiceService(Ride[] rides, string userId)
+        {
+            InvoiceSummary result = EnhancedInvoice(rides);
+            return new User(userId, result);
+        }
     }
     //RideType Enum
     public enum RideType
@@ -78,4 +85,3 @@ namespace CabInvoiceGenerator
         PREMIUM,
     }
 }
-
